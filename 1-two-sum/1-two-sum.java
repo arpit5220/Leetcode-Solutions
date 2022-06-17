@@ -14,8 +14,8 @@ class Solution {
             if(hm.containsKey(rem))
             {
                 int index=hm.get(rem);
-                if(index==i) continue;
-                return new int[]{i,index};
+                if(index==i) continue;    // to chek if 6-3=3--> already present in hashmap
+                return new int[]{i,index};  // just dry run second test case and you will be able to know
                     
             }
         }
