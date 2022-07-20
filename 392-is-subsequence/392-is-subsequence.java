@@ -14,6 +14,11 @@ class Solution {
                     k=j+1;
                     break;
                 }
+                else
+                {
+                    if(j==t.length()-1)
+                        return false;
+                }
             }
         }
         
