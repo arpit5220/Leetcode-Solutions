@@ -6,6 +6,8 @@ class Solution {
         {
             int num=convert(n,i);
             if(palindrome(num)) count++;
+            else
+                break;
         }
         
         if(count==n-3) return true;
