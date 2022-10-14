@@ -54,10 +54,10 @@ class Complete{
     
    
     // Function for finding maximum and value pair
-    public static int maximizeSum (int a[], int n) {
+    public static int maximizeSum (int arr[], int n) {
         
         // MY CODE NOT WORKING 
-     /*   HashMap<Integer,Integer> hm = new HashMap<>();
+        HashMap<Integer,Integer> hm = new HashMap<>();
         for(int i=0;i<n;i++)
         {
             if(hm.containsKey(arr[i]))
@@ -95,34 +95,36 @@ class Complete{
             
         }
         
-        return count; */
+        return count; 
         
-        int sum=0;
-        int max=a[0];
+    //     int sum=0;
+    //     int max=a[0];
         
-      for(int i=0;i<n;i++)
-      {
-          if(a[i]>max)
-          max=a[i];
-      }
+    //   for(int i=0;i<n;i++)
+    //   {
+    //       if(a[i]>max)
+    //       max=a[i];
+    //   }
        
-       int [] m=new int [max+1];
+    //   int [] m=new int [max+1];
        
-        for(int i=0;i<n;i++){
-            m[a[i]]++;
-        }
+    //     for(int i=0;i<n;i++){
+    //         m[a[i]]++;
+    //     }
        
-        for(int i=n-1;i>=0;i--){
-            if(m[a[i]]>0){
+    //     for(int i=n-1;i>=0;i--){
+    //         if(m[a[i]]>0){
                 
-                m[a[i]]--;
-                m[a[i]-1]--;
+    //             m[a[i]]--;
+    //             m[a[i]-1]--;
                 
-                sum+=a[i];
-            }
-        }
-        return sum;
-    }
+    //             sum+=a[i];
+    //         }
+    //     }
+    //     return sum;
+    
+    
+     }
     
     
 }
