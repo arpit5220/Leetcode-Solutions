@@ -1,0 +1,43 @@
+class Solution {
+    public int divide(int dividend, int divisor) {
+        int sign = 1;
+        if((dividend < 0 && divisor > 0) || (dividend > 0 && divisor < 0)) {
+            sign = -1;
+        }
+        long ldividend = Math.abs((long) dividend);
+        long ldivisor = Math.abs((long) divisor);
+        
+        long lans = ldivide(ldividend, ldivisor, sign);
+        
+        if(lans > Integer.MAX_VALUE) {
+            return Integer.MAX_VALUE;
+        } else if(lans < Integer.MIN_VALUE) {
+            return Integer.MIN_VALUE;
+        } else {
+            return (int)lans;
+        }
+    }
+    
+    private long ldivide(long ldividend, long ldivisor, int sign) {
+        // Base case
+        if(ldividend < ldivisor) {
+            return 0;
+        }
+        
+        long multiple = 1;
+        long sum = ldivisor;
+        while((sum + sum) < ldividend) {
+            // Keep adding itself: d, d * 2, d * 4 ... until find the largest sum smaller than target
+            multiple += multiple;
+            sum += sum;
+        }
+        
+        // Recursion calls
+        if(sign == 1) {
+            return multiple + ldivide(ldividend - sum, ldivisor, sign); 
+        } else {
+            return 0 - multiple + ldivide(ldividend - sum, ldivisor, sign);
+        }
+        
+    }
+}
