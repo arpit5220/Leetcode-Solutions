@@ -64,3 +64,32 @@ class Solution {
 //         }
         
 //         return str.toString();
+
+
+// Added Java Solution  using Recursion
+class Solution {
+    public String countAndSay(int n) {
+        if(n==1){
+            return "1";
+        }
+        if(n==2){
+            return "11";
+        }
+        char[] pre = countAndSay(n-1).toCharArray();
+        int c=1;
+        StringBuilder res=new StringBuilder();
+        for(int i=1;i<pre.length;i++){
+            if(pre[i-1]==pre[i]){
+                c++;
+            }
+            else{
+                res.append(c);
+                res.append(pre[i-1]);
+                c=1;
+            }
+        }
+        res.append(c);
+        res.append(pre[pre.length-1]);
+        return new String(res);
+    }
+}
