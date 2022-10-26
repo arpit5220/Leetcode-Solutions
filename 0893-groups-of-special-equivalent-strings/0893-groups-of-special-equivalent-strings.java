@@ -1,5 +1,7 @@
 class Solution {
-    public int numSpecialEquivGroups(String[] words) {
+    
+    // 1st method   time--> 46ms
+   /* public int numSpecialEquivGroups(String[] words) {
         
        HashSet<String> set=new HashSet<>();
         for(String str:words)
@@ -34,4 +36,45 @@ class Solution {
             return String.valueOf(a);
         }
     
+} */
+
+
+public int numSpecialEquivGroups(String[] words) {
+    HashSet<String> set = new HashSet<>();
+	StringBuilder evenSb = new StringBuilder();
+    StringBuilder oddSb = new StringBuilder();
+    
+    // if input is 'dbca'
+    // evenSb will have {dc}
+    // oddSb will have {ba}
+    // Then sort each string.
+    // evenSb will be {cd}
+    // oddSb will be {ab}
+    // Then merge those evenSb and oddSb which will be {cdab};
+    // This will make all the special-equivalent to same string sequence.
+	// Add sorted string of {cdab} to the hashset.
+    // So that size of HashSet will be the 'answer'
+
+    for (String word : words) {
+        for (int i = 0; i < word.length(); i++) {
+            if (i % 2 == 0) { // even
+                evenSb.append(word.charAt(i));
+            } else {
+                oddSb.append(word.charAt(i));
+            }    
+        }
+        
+        char[] evenChars = evenSb.toString().toCharArray();
+        Arrays.sort(evenChars);
+        char[] oddChars = oddSb.toString().toCharArray();
+        Arrays.sort(oddChars);
+        
+        
+        set.add(new String(evenChars) + new String(oddChars));
+        evenSb = new StringBuilder();
+        oddSb = new StringBuilder();
+    }
+    
+    return set.size();
+}
 }
