@@ -1,4 +1,4 @@
-class Solution {
+/*class Solution {
     
     // 1st method   time--> 46ms
    /* public int numSpecialEquivGroups(String[] words) {
@@ -38,8 +38,8 @@ class Solution {
     
 } */
 
-
-public int numSpecialEquivGroups(String[] words) {
+       // 2nd Method
+/*public int numSpecialEquivGroups(String[] words) {
     HashSet<String> set = new HashSet<>();
 	StringBuilder evenSb = new StringBuilder();
     StringBuilder oddSb = new StringBuilder();
@@ -77,4 +77,26 @@ public int numSpecialEquivGroups(String[] words) {
     
     return set.size();
 }
+}   
+   */
+  
+// 3rd Method less complexity
+class Solution {
+    public int numSpecialEquivGroups(String[] words) {
+        HashSet<String> record = new HashSet<>();
+        for (String str: words) {
+            int[] even = new int[26];
+            int[] odd = new int[26];
+            for (int i = 0; i < str.length(); i++) {
+                if (i % 2 == 0) {
+                    even[str.charAt(i) - 'a']++;
+                } else {
+                    odd[str.charAt(i) - 'a']++;
+                }
+            }
+            record.add(Arrays.toString(even) + Arrays.toString(odd));
+        }
+        
+        return record.size();
+    }
 }
