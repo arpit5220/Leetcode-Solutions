@@ -16,7 +16,7 @@ class Solution {
         return (int)(count%1000000007);
         
     }
-     int rev(int n){
+    public static  int rev(int n){
        int sum = 0;
         while(n>0){
           int rem = n%10;
