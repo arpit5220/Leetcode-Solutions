@@ -34,9 +34,8 @@ class Solution
 {
     ArrayList<Integer> countDistinct(int arr[], int n, int k)
     {
-        ArrayList<Integer> list=new ArrayList<>();
-     
-         
+        // My Code
+       /*  ArrayList<Integer> list=new ArrayList<>();
          int j=k-1;
          HashMap<Integer,Integer> hm=new HashMap<>();
          for(int i=0;i<k;i++)
@@ -48,8 +47,7 @@ class Solution
          j++;
          for(int i=1;i<=n-k;i++,j++)
          {
-             //HashMap<Integer,Integer> map=new HashMap<>();
-            // hm.put(arr[i-1],hm.getOrDefault(arr[i-1],0)-1);
+
             int val=hm.get(arr[i-1]);
             if(val==1)
             {
@@ -62,7 +60,38 @@ class Solution
              list.add(hm.size());
          }
          
+        return list; */
+        
+        
+        // Second easy Code
+         ArrayList<Integer> list=new ArrayList<>();
+         HashMap<Integer,Integer> hm=new HashMap<>();
+         for(int i=0;i<k;i++)
+         {
+             hm.put(arr[i],hm.getOrDefault(arr[i],0)+1);
+         }
+         
+         list.add(hm.size());
+         
+         int j=0; // start point
+         for(int i=k;i<arr.length;i++)
+         {
+             hm.put(arr[i],hm.getOrDefault(arr[i],0)+1);
+              
+            int val=hm.get(arr[j]);
+            if(val==1)
+            {
+                hm.remove(arr[j]);
+            }
+            else
+             hm.put(arr[j],hm.getOrDefault(arr[j],0)-1);
+            j++;
+             list.add(hm.size());
+         }
+         
         return list;
+         
+        
     }
 }
 
