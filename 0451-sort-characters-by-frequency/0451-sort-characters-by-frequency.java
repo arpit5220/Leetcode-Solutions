@@ -1,6 +1,7 @@
 class Solution {
     public String frequencySort(String s) {
         
+        // Time Complexity O(nlogn) , Space O(n)
         HashMap<Character,Integer> hm=new HashMap<>();
         for(int i=0;i<s.length();i++)
         {
@@ -8,7 +9,7 @@ class Solution {
             hm.put(ch,hm.getOrDefault(ch,0)+1);
         }
         
-        PriorityQueue<Character> pq=new PriorityQueue<Character> ((a,b) -> hm.get(b)-hm.get(a));
+       PriorityQueue<Character> pq=new PriorityQueue<Character> ((a,b) -> hm.get(b)-hm.get(a));
         
         pq.addAll(hm.keySet());
         
@@ -25,5 +26,9 @@ class Solution {
         }
         
         return sb.toString();
+        
+        
+        
+        
     }
 }
