@@ -1,6 +1,7 @@
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
          
+        // FIRST METHOD
      /*  HashMap<String, ArrayList<String>> map = new HashMap<>();
        List<List<String>> listOfLists = new ArrayList<>();
        for(String str:strs) {
@@ -30,7 +31,6 @@ class Solution {
         
         // SECOND METHOD
         HashMap<String,ArrayList<String>> map = new HashMap<>();
-        
         for(String str:strs)
         {
             String code=getcode(str);
@@ -58,8 +58,8 @@ class Solution {
         
     }
     
-     /* public static String getcode(String str)
-      {
+     /* public static String getcode(String str) 
+      {   // DONT USE HASHMAP BECAUSE IN HASHMAP KEY IS NOT IN ORDERED FORM
           HashMap<Character,Integer> fmap=new HashMap<>();
           for(Character ch:str.toCharArray())
           {
@@ -81,11 +81,15 @@ class Solution {
            for(int i=0; i<str.length(); i++) {
                count[str.charAt(i)-'a']++;
            }
-           
            // build the key in sorted order
            String key="";
            for(int i=0; i<26; i++) {
-               key = key + (char)(i+'a') + count[i] + "-";
+               if(count[i]>0){
+               key = key + ((char)(i+'a')) + count[i] + "";
+               
+               //System.out.println("key ->key"+" "+key+" KEY");
+               }
+               
            }
         
         return key;
