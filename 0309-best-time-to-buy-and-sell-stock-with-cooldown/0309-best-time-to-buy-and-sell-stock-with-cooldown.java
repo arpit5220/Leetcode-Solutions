@@ -2,7 +2,7 @@ class Solution {
     public int maxProfit(int[] prices) {
         
         
-        int obsp=-prices[0];
+      int obsp=-prices[0];
       int ossp=0;
       int ocsp=0;
 
@@ -10,7 +10,7 @@ class Solution {
       {
           int nbsp=0; // new bought state profit
           int nssp=0;  // new sell state profit 
-          int ncsp=0;
+          int ncsp=0;  // n cool state profit
 
           if(ocsp-prices[i]>obsp)  // bcz value is negative
           {
