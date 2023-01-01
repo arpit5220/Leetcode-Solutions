@@ -10,9 +10,9 @@ class Solution {
         {
             String  wch=word[i];
             char pch=pattern.charAt(i);
-            if(map.containsKey(pch)==false)
+            if(!map.containsKey(pch))
             {
-                if(used.containsKey(wch)==true)
+                if(used.containsKey(wch))
                     return false;
                 else
                 {
@@ -27,7 +27,6 @@ class Solution {
            }
             
         }
-        
         return true;
     }
 }
