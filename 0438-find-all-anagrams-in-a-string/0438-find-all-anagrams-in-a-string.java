@@ -3,6 +3,7 @@ class Solution {
         
         ArrayList<Integer> list=new ArrayList<>();
         if(p.length()>s.length()) return list;
+        
         int [] pmap=new int[26];
         for(int i=0;i<p.length();i++)
         {
@@ -16,11 +17,13 @@ class Solution {
               smap[ch-'a']++;
         }
          
-       // ArrayList<Integer> list=new ArrayList<>();
-         if(anagram(smap,pmap)==true)
-         {
-             list.add(0);
-         }
+         // if(anagram(smap,pmap)==true)  --> use this 
+         // {
+         //     list.add(0);
+         // }
+    
+           if(Arrays.equals(smap,pmap)) // -->or this
+                 list.add(0);
             
           int i=p.length();
           int j=0;
@@ -36,10 +39,12 @@ class Solution {
                  smap[chj-'a']--;
              }
             
-             if(anagram(smap,pmap)==true)
-             {
-               list.add(j+1);
-             }
+             // if(anagram(smap,pmap)==true)
+             // {
+             //   list.add(j+1);
+             // }
+             if(Arrays.equals(smap,pmap))
+                 list.add(j+1);
               
              i++;j++;
          }
@@ -48,15 +53,16 @@ class Solution {
     }
         
     
-     public static boolean anagram(int []map1,int []map2)
-      {
-          for(int i=0;i<26;i++)
-          {
-              if(map1[i]!=map2[i])
-                  return false;
-          }
+    // check equality using Arrays.equals(aa1,aar2) method
+//      public static boolean anagram(int []map1,int []map2) // use this is better
+//       {
+//           for(int i=0;i<26;i++)
+//           {
+//               if(map1[i]!=map2[i])
+//                   return false;
+//           }
           
-          return true;
-      }
+//           return true;
+//       }
     
 }
