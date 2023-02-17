@@ -14,29 +14,28 @@
  * }
  */
 class Solution {
-    // List to store the tree nodes in the inorder traversal.
-    List<Integer> inorderNodes = new ArrayList<>();
-    
-    void inorderTraversal(TreeNode root) {
-        if (root == null) {
-            return;
-        }
-        
-        inorderTraversal(root.left);
-        // Store the nodes in the list.
-        inorderNodes.add(root.val);
-        inorderTraversal(root.right);
-    }
-    
     public int minDiffInBST(TreeNode root) {
-       inorderTraversal(root);
         
-        int minDistance = Integer.MAX_VALUE;
-        // Find the diff between every two consecutive values in the list.
-        for (int i = 1; i < inorderNodes.size(); i++) {
-            minDistance = Math.min(minDistance, inorderNodes.get(i) - inorderNodes.get(i-1));
+        ArrayList<Integer> list=new ArrayList<>();
+        inorder(root,list);
+        int min=Integer.MAX_VALUE;;
+        for(int i=1;i<list.size();i++)
+        {
+            min=Math.min(min,Math.abs(list.get(i)-list.get(i-1)));
         }
         
-        return minDistance;
+        return min;
     }
-};
+    
+    public void inorder(TreeNode node,ArrayList<Integer> list)
+    {
+        if(node==null)
+             return;
+        
+       
+        inorder(node.left,list);
+        list.add(node.val);
+        inorder(node.right,list);
+        
+    }
+}
