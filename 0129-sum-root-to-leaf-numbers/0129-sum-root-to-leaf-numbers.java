@@ -14,6 +14,7 @@
  * }
  */
 class Solution {
+     static int sum=0;
     public int sumNumbers(TreeNode root) {
         
         return sum(root,0);
@@ -29,7 +30,11 @@ class Solution {
 	             return val;
 	           }
 	             
-	           return  sum(root.left,val)+sum(root.right,val);
+	         //  return  sum(root.left,val)+sum(root.right,val);
+          int left= sum(root.left,val);
+          int right= sum(root.right,val);
+          sum=left+right;
+         return sum;
 	             
-	     }
+	   }
 }
