@@ -1,40 +1,36 @@
 class Solution {
     public List<String> commonChars(String[] words) {
-     
-        int [] array=new int[26];
-        Arrays.fill(array,Integer.MAX_VALUE);
-        for(String str:words)
+        
+        int [] frq=new int [26];
+        Arrays.fill(frq,1000);
+        
+        
+        for(int i=0;i<words.length;i++)
         {
-            int [] res=new int[26];
-            for(char ch:str.toCharArray())
+            String str=words[i];
+            int [] arr=new int[26];
+            
+            for(int j=0;j<str.length();j++)
             {
-                res[ch-'a']++;
+                arr[str.charAt(j)-'a']++;
             }
             
-            
-            for(int i=0;i<26;i++)
+            for(int k=0;k<26;k++)
             {
-                array[i]=Math.min(array[i],res[i]);
+                frq[k]=Math.min(arr[k],frq[k]);
             }
-            
-            
         }
         
-        ArrayList<String> ans=new ArrayList<>();
-        
+        List<String> res=new ArrayList<>();
         for(int i=0;i<26;i++)
         {
-            while(array[i]>0)
+            while(frq[i]>0)
             {
-                ans.add(""+(char)(i+'a'));
-                array[i]--;
+                res.add(""+(char)(i+'a'));
+                frq[i]--;
             }
         }
         
-        return ans;     
+        return res;
     }
 }
-
-
-
- 
