@@ -1,7 +1,6 @@
 class Solution {
     public int countKDifference(int[] nums, int k) {
         
-        
         HashMap<Integer,Integer> hm=new HashMap<>();
         
         int count=0;
@@ -21,12 +20,7 @@ class Solution {
                 count+=p2;
             }
             
-            if(hm.containsKey(nums[i]))
-            {
-                hm.put(nums[i],hm.get(nums[i])+1);
-            }
-            else
-                hm.put(nums[i],1);
+            hm.put(nums[i],hm.getOrDefault(nums[i],0)+1);
                  
         }
         
