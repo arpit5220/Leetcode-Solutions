@@ -10,16 +10,10 @@ class Solution {
             set1.add(A[i]);
             set2.add(B[i]);
             
-             int count=0;
-             for(int j=0;j<=i;j++)
-             {
-                 if(set1.contains(A[j]) && set2.contains(A[j]))
-                 {
-                     count++;
-                 }
-             }
+            HashSet<Integer> res=new HashSet<>(set1);
+            res.retainAll(set2);
             
-            arr[i]=count;
+            arr[i]=res.size();
             
         }
         
