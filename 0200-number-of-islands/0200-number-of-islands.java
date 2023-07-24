@@ -1,93 +1,69 @@
 class Solution {
-    // Function to find the number of islands.
     public int numIslands(char[][] grid) {
-        // Code here
         
-      int n=grid.length;
-      int m=grid[0].length;
-      
-      int [][] vis=new int[n][m];
-      int cnt=0;
-      for(int row=0;row<n;row++)
-      {
-          for(int col=0;col<m;col++)
-          {
-              if(vis[row][col]==0 && grid[row][col]=='1')
-              {
-                  cnt++;
-               //   bfs(row,col,vis,grid);
-                  dfs(grid, vis, row, col);
-              }
-          }
-      }
-      
-      return cnt;
+        int n=grid.length;
+        int m=grid[0].length;
+        
+        boolean [][] vis=new boolean[n][m];
+        int count=0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j]=='1' && vis[i][j]==false)
+                {
+                    count++;
+                    bfs(grid,vis,i,j);
+                }
+            }
+        }
+        
+        return count;
     }
     
- /*   public void bfs(int ro,int co,int[][] vis,char [][] grid)
+    public void bfs(char [][] grid,boolean [][] vis,int i,int j)
     {
-        vis[ro][co]=1;
+        Queue<Pair> q=new LinkedList<>();
         
-        Queue<Pair> pq=new ArrayDeque<>();
-        pq.add(new Pair(ro,co));
+        q.add(new Pair(i,j));
+        vis[i][j]=true;
         
-         int n=grid.length;
-         int m=grid[0].length;
+        int n=grid.length;
+        int m=grid[0].length;
         
-        while(pq.size()>0)
+        int nrow[]={-1,0,1,0};
+        int ncol[]={0,1,0,-1};
+        while(q.size()>0)    
         {
-            Pair temp=pq.remove();
+            Pair temp=q.remove();
             int row=temp.first;
             int col=temp.second;
-             
-            for(int delrow=-1;delrow<=1;delrow++)
+            
+            for(int k=0;k<4;k++)
             {
-                for(int delcol=-1;delcol<=1;delcol++)
+                int r=nrow[k]+row;
+                int c=ncol[k]+col;
+                
+                if(r>=0 && r<n && c>=0 && c<m && grid[r][c]=='1' && vis[r][c]==false)
                 {
-                    int nrow=row+delrow;
-                    int ncol=col+delcol;
-                    
-                    if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && grid[nrow][ncol]=='1' && vis[nrow][ncol]==0)
-                    {
-                        vis[nrow][ncol]=1;
-                        pq.add(new Pair(nrow,ncol));
-                    }
+                    vis[r][c]=true;
+                    q.add(new Pair(r,c));
                 }
             }
             
+            
         }
-    }  */
-    
-    void dfs(char[][] grid, int [][] vis, int i, int j)
-    {
-        if(i<0 || i==grid.length || j<0 || j==grid[0].length || grid[i][j] == '0' || vis[i][j]==1)
-        return;
         
-        
-        vis[i][j] = 1;
-        
-      // checking all eight directions
-        dfs(grid, vis, i+1, j);      //3.
-       // dfs(grid, vis, i+1, j+1);
-        dfs(grid, vis, i, j+1);       //2.
-      //  dfs(grid, vis, i-1, j+1);
-        dfs(grid, vis, i-1, j);       //1.
-       // dfs(grid, vis, i-1, j-1);
-        dfs(grid, vis, i, j-1);       //4.
-       // dfs(grid, vis, i+1, j-1);
     }
-    
-    
-    class Pair
+}
+
+class Pair
+{
+    int first;
+    int second;
+    Pair(int first,int second)
     {
-        int first;
-        int second;
-        
-        Pair(int first,int second)
-        {
-            this.first=first;
-            this.second=second;
-        }
+        this.first=first;
+        this.second=second;
     }
-    
 }
