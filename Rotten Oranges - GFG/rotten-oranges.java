@@ -42,7 +42,7 @@ class Solution
         int m=grid[0].length;
         
         Queue<Pair> pq=new LinkedList<>();
-        boolean vis[][] =new boolean [n][m];
+        int  vis[][] =new int [n][m];
         
         int countfresh=0;
         for(int i=0;i<n;i++)
@@ -51,12 +51,12 @@ class Solution
             {
                 if(grid[i][j]==2)
                 {
-                    vis[i][j]=true;
+                    vis[i][j]=2;
                     pq.add(new Pair(i,j,0));
                 }
-                else if(grid[i][j]==0)
+                else //if(grid[i][j]==0)
                 {
-                     vis[i][j]=true;
+                     vis[i][j]=0;
                 }
                 
                 if(grid[i][j]==1)
@@ -86,11 +86,13 @@ class Solution
                 int nrow=r+drow[i];
                 int ncol=c+dcol[i];
                 
-                if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && vis[nrow][ncol]==false && grid[nrow][ncol]==1)
+                if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && vis[nrow][ncol]==0 && grid[nrow][ncol]==1)
                 {
                     pq.add(new Pair(nrow,ncol,t+1));
-                    vis[nrow][ncol]=true;
-                    grid[nrow][ncol]=2;
+                    //vis[nrow][ncol]=true;
+                   // grid[nrow][ncol]=2;  // not a good approach bcz grid values changes
+                   
+                    vis[nrow][ncol]=2;
                     cnt++;
                     
                 }
