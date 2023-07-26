@@ -39,7 +39,7 @@ class Solution {
         
         // USING BFS
         
-        boolean [] visited=new boolean[V+1];
+     /*   boolean [] visited=new boolean[V+1];
         
         for(int i=0;i<V;i++)
         {
@@ -94,4 +94,48 @@ class Pair{
         this.node=node;
         this.parent=parent;
     }
+}      */
+
+
+
+
+
+        // USING DFS
+        
+        boolean [] visited=new boolean[V+1];
+        
+        for(int i=0;i<V;i++)
+        {
+            if(visited[i]==false)
+            {
+                if(detectCycle(adj,visited,i,-1))
+                  return true;
+            }
+        }
+        
+        return false;
+        
+    }
+    
+    public boolean detectCycle(ArrayList<ArrayList<Integer>> adj,boolean [] visited,int src,int parent)
+    {
+          visited[src]=true;
+          
+          for(int nbr:adj.get(src))
+          {
+              if(!visited[nbr])
+              {
+                 
+                  if(detectCycle(adj,visited,nbr,src))
+                      return true;
+              }
+              else if(parent !=nbr)
+              {
+                  return true;
+              }
+          }
+          
+          return false;
+    }
+    
 }
