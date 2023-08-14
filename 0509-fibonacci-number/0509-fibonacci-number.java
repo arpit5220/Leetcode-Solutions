@@ -187,32 +187,53 @@
 //    }
 // }
 
-class Solution {
-   public int fib ( int n ) {
+// class Solution {
+//    public int fib ( int n ) {
        
-       // Using Memoization
-       int [] dp=new int[n+1];
-       Arrays.fill(dp,-1);
-       int cal=solve(n,dp);
-       return cal;
-   }
+//        // Using Memoization
+//        int [] dp=new int[n+1];
+//        Arrays.fill(dp,-1);
+//        int cal=solve(n,dp);
+//        return cal;
+//    }
     
-    public int solve(int n,int [] dp)
-    {
-        if(n==1)
-            return 1;
-        if(n==0)
-            return 0;
-        if(dp[n]!=-1)
-            return dp[n];
+//     public int solve(int n,int [] dp)
+//     {
+//         if(n==1)
+//             return 1;
+//         if(n==0)
+//             return 0;
+//         if(dp[n]!=-1)
+//             return dp[n];
         
-        int prev1=solve(n-1,dp);
-        int prev2=solve(n-2,dp);
-        dp[n]=prev1+prev2;
-        return dp[n];
+//         int prev1=solve(n-1,dp);
+//         int prev2=solve(n-2,dp);
+//         dp[n]=prev1+prev2;
+//         return dp[n];
+//     }
+// }
+
+class Solution {
+    public int fib ( int n ) {
+        
+        if(n==0) return 0;
+        if(n==1) return 1;
+        
+        int a=0;
+        int b=1;
+        int c=0;
+        
+        for(int i=2;i<=n;i++)
+        {
+            c=a+b;
+            a=b;
+            b=c;
+        }
+        
+        return c;
+        
     }
 }
-
 
                      
 
